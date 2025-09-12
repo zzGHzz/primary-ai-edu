@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "node",
+      "args": ["dist/servers/playwright-mcp.js"],
+      "env": {
+        "HEADLESS": "1"
+      },
+      "workingDirectory": "${workspaceRoot}"
+    }
+  }
+}
+

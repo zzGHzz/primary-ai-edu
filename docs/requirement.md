@@ -6,6 +6,11 @@ I am the principal of an international primary school in Hong Kong.
 ## Objectives
 The school is exploring ways to incorporate the latest AI technologies to enhance the teaching and learning experience. The goal is to establish a concrete plan for setting up an IT infrastructure that supports AI integration in the classroom.
 
+## Current School IT Settings
+- Google Classroom for teacher-parent communications
+- Google docs/slides for student assignments
+- Students are given dedicated google accounts managed by the school
+
 ## Outputs
 
 Prepare a document (in markdown) that covers the following aspects:
@@ -21,3 +26,4 @@ Prepare a document (in markdown) that covers the following aspects:
   - Integration capabilities with existing school systems
 - Provide recommendations on the best AI tools/platforms to adopt, along with a step-by-step implementation plan
 - Suggest training programs for teachers to effectively utilize the chosen AI tools/platforms
+- Ensure the document is well-structured, clear, and concise, making it easy for school stakeholders to understand and act upon
