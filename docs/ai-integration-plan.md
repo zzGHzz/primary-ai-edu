@@ -71,7 +71,7 @@ This plan proposes a safe, age-appropriate adoption of AI to enhance teaching an
 - Managed student Google accounts: apply OU-based policies, enforce safe search, and restrict third‑party app access.
 
 ## Further Reading
-- [Google Workspace + Gemini details](docs/tools/google-workspace-gemini.md)
+- [Google Workspace + Gemini details](tools/google-workspace-gemini.md)
 
 ## Excluded Tools (Rationale)
 - Microsoft 365 + Copilot, Khanmigo, Canva, Quizizz, Nearpod, and custom LLM gateways are excluded in this phase to avoid external handling of school data beyond the Google Workspace tenant.
