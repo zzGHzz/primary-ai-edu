@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.18.0",
-    "playwright": "^1.55.0"
+    "playwright": "^1.55.0",
+    "zod": "^3.25.76"
   }
 }

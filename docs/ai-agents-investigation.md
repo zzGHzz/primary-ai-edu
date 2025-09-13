@@ -23,9 +23,10 @@
 ## Architecture Options (Google-Aligned)
 - Option A — Vendor-embedded assistants (Gemini in Docs/Slides/Classroom)
   - Pros: native controls, least integration effort, no new data flows. Cons: limited custom workflows.
-- Excluded for now (external data handling):
-  - Option B — School-managed agent via gateway (would route data to external model providers)
-  - Option C — Third-party classroom agents (non-Google SaaS)
+- Option B — School-managed agent via gateway (data stays within chosen cloud region)
+  - Pros: strongest policy control/logging; flexible models. Cons: highest effort/cost; requires engineering.
+- Option C — Third-party classroom agents (non-Google SaaS, e.g., Khanmigo)
+  - Pros: student coaching and dashboards; low setup. Cons: vendor data handling; must pass due diligence.
 
 ## Agent Loop (Teacher-in-the-Loop)
 ```mermaid
@@ -44,15 +45,17 @@ sequenceDiagram
 ```
 
 ## Comparison Snapshot
-- Security/Compliance: B > A ≥ C (B strongest with logs; A good; C varies)
+- Security/Compliance: B > A ≥ C (B strongest with logs; A good; C varies by vendor)
 - Pedagogy Fit: A/C strong out-of-the-box; B customizable to curriculum
 - Effort/Cost: A lowest; C medium (licenses); B highest (build/run)
 
+See also: [AI tool comparison](ai-tool-comparison.md) and [evaluation rubric](evaluation-rubric.md).
+
 ## Pilot Plan
-- Phase 0 (0–1 mo): Policies, consent templates, Google Admin baselines (app restrictions, logs, Gemini controls), choose Option A + one of B/C for pilot.
-- Phase 1 (2–3 mo): Teacher-facing pilots only. Scenarios: lesson planning, feedback drafting, quiz generation. 6–8 teachers, 2–3 classes.
-- Phase 2 (4–6 mo): Expand subjects; add student-facing coaching in walled garden (Khanmigo or tightly constrained gateway app).
-- Phase 3 (7–12 mo): Optimize; consider more tools if metrics met.
+- Phase 0 (0–1 mo): Policies, consent templates, Google Admin baselines (app restrictions, logs, Gemini controls). Complete vendor due diligence for any C or B pilot.
+- Phase 1 (2–3 mo): Teacher-facing pilots only (Option A). Scenarios: lesson planning, feedback drafting, quiz generation. 6–8 teachers, 2–3 classes.
+- Phase 2 (4–6 mo): Optional, single student-facing pilot in a walled garden (Option C or tightly constrained B) with parental consent.
+- Phase 3 (7–12 mo): Optimize; consider broader tools only if metrics and safety thresholds are met.
 
 ## Success Metrics
 - Teacher efficiency: ≥30% prep/marking time reduction for pilot teachers.
@@ -66,13 +69,20 @@ sequenceDiagram
 - Inappropriate content -> multi-stage safety filters; age gates; allowlists.
 - Over-reliance -> training on pedagogy-first use; reflective prompts; exemplars.
 
+## Scope Boundaries and Logging
+- Teacher-in-the-loop required for any publishing action to Drive/Classroom.
+- No persistent autonomy; tasks time-boxed and auditable.
+- Logs retained per policy; termly admin review. See [vendor-due-diligence-checklist.md](vendor-due-diligence-checklist.md).
+
 ## Recommendations
 - Proceed with Option A (Gemini) for teacher tasks only.
 - Keep all student-facing agents “assistive”, not autonomous; require teacher initiation and oversight.
-- Reassess gateway/third-party options only if policies allow and data remains within approved boundaries.
+- Reassess gateway/third-party options only after due diligence, consents, and regional data reviews.
 
 ## Next Steps
 - Select pilot teachers/subjects and finalize scenarios.
 - Configure Admin policies and logging; prepare consent and safety briefings.
 - Implement add-on UI (if Option B) and connect to gateway policies.
 - Schedule training and evaluation checkpoints; report results to leadership.
+
+References: [ai-integration-plan.md](ai-integration-plan.md) · [ai-tool-comparison.md](ai-tool-comparison.md) · [evaluation-rubric.md](evaluation-rubric.md) · [pilot-evaluation-form.md](pilot-evaluation-form.md)

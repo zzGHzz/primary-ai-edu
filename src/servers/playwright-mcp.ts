@@ -1,6 +1,8 @@
-import { Server } from "@modelcontextprotocol/sdk/server/index.js";
-import { Tool, CallToolRequestSchema } from "@modelcontextprotocol/sdk/types.js";
-import { chromium, firefox, webkit, Browser, Page } from "playwright";
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { chromium, firefox, webkit } from "playwright";
+import type { Browser, Page } from "playwright";
+import { z } from "zod";
 
 type BrowserName = "chromium" | "firefox" | "webkit";
 
@@ -30,125 +32,123 @@ async function ensurePage() {
   return page;
 }
 
-const tools: Tool[] = [
+const server = new McpServer({
+  name: "playwright-mcp",
+  version: "0.1.0"
+});
+
+server.registerTool(
+  "open_page",
   {
-    name: "open_page",
+    title: "Open Page",
     description: "Open a URL in a headless browser and wait for network idle.",
     inputSchema: {
-      type: "object",
-      properties: {
-        url: { type: "string", description: "The URL to open." },
-      },
-      required: ["url"],
-    },
+      url: z.string().describe("The URL to open.")
+    }
   },
+  async ({ url }) => {
+    const p = await ensurePage();
+    await p.goto(url, { waitUntil: "networkidle" });
+    return { content: [{ type: "text", text: `Opened ${url}` }] };
+  }
+);
+
+server.registerTool(
+  "click",
   {
-    name: "click",
+    title: "Click Element",
     description: "Click an element using a selector.",
     inputSchema: {
-      type: "object",
-      properties: {
-        selector: { type: "string", description: "CSS/XPath selector." },
-        timeoutMs: { type: "number", description: "Optional timeout." },
-      },
-      required: ["selector"],
-    },
+      selector: z.string().describe("CSS/XPath selector."),
+      timeoutMs: z.number().optional().describe("Optional timeout.")
+    }
   },
+  async ({ selector, timeoutMs }) => {
+    const p = await ensurePage();
+    await p.click(selector, { timeout: timeoutMs ?? 10000 });
+    return { content: [{ type: "text", text: `Clicked ${selector}` }] };
+  }
+);
+
+server.registerTool(
+  "fill",
   {
-    name: "fill",
+    title: "Fill Input",
     description: "Fill an input/textarea with text.",
     inputSchema: {
-      type: "object",
-      properties: {
-        selector: { type: "string" },
-        value: { type: "string" },
-      },
-      required: ["selector", "value"],
-    },
+      selector: z.string().describe("CSS/XPath selector."),
+      value: z.string().describe("Text to fill.")
+    }
   },
+  async ({ selector, value }) => {
+    const p = await ensurePage();
+    await p.fill(selector, value);
+    return { content: [{ type: "text", text: `Filled ${selector}` }] };
+  }
+);
+
+server.registerTool(
+  "evaluate",
   {
-    name: "evaluate",
+    title: "Evaluate JavaScript",
     description: "Run JavaScript in the page context and return the result as JSON.",
     inputSchema: {
-      type: "object",
-      properties: {
-        expression: { type: "string", description: "JS expression e.g. document.title" },
-      },
-      required: ["expression"],
-    },
+      expression: z.string().describe("JS expression e.g. document.title")
+    }
   },
+  async ({ expression }) => {
+    const p = await ensurePage();
+    const result = await p.evaluate((expr) => {
+      // eslint-disable-next-line no-eval
+      return eval(expr as string);
+    }, expression);
+    return { content: [{ type: "text", text: JSON.stringify(result) }] };
+  }
+);
+
+server.registerTool(
+  "screenshot",
   {
-    name: "screenshot",
+    title: "Take Screenshot",
     description: "Take a PNG screenshot and return as base64.",
     inputSchema: {
-      type: "object",
-      properties: {
-        selector: { type: "string", description: "Optional element selector." },
-        fullPage: { type: "boolean", description: "Full page screenshot." },
-      },
-    },
-  },
-];
-
-const server = new Server({
-  name: "playwright-mcp",
-  version: "0.1.0",
-  tools,
-});
-
-server.setRequestHandler(CallToolRequestSchema, async (req) => {
-  const p = await ensurePage();
-  const args = (req.params.arguments || {}) as Record<string, any>;
-  try {
-    switch (req.params.name) {
-      case "open_page": {
-        const url = String(args.url);
-        await p.goto(url, { waitUntil: "networkidle" });
-        return { content: [{ type: "text", text: `Opened ${url}` }] };
-      }
-      case "click": {
-        const { selector, timeoutMs } = args;
-        await p.click(String(selector), { timeout: timeoutMs ?? 10000 });
-        return { content: [{ type: "text", text: `Clicked ${selector}` }] };
-      }
-      case "fill": {
-        const { selector, value } = args;
-        await p.fill(String(selector), String(value));
-        return { content: [{ type: "text", text: `Filled ${selector}` }] };
-      }
-      case "evaluate": {
-        const { expression } = args;
-        const result = await p.evaluate((expr) => {
-          // eslint-disable-next-line no-eval
-          return eval(expr as string);
-        }, String(expression));
-        return { content: [{ type: "text", text: JSON.stringify(result) }] };
-      }
-      case "screenshot": {
-        const { selector, fullPage } = args;
-        let buffer: Buffer;
-        if (selector) {
-          const el = await p.$(String(selector));
-          if (!el) throw new Error(`Element not found: ${selector}`);
-          buffer = await el.screenshot({ type: "png" });
-        } else {
-          buffer = await p.screenshot({ type: "png", fullPage: Boolean(fullPage) });
-        }
-        const b64 = buffer.toString("base64");
-        return { content: [{ type: "text", text: b64, mimeType: "image/png;base64" }] } as any;
-      }
-      default:
-        throw new Error(`Unknown tool: ${req.params.name}`);
+      selector: z.string().optional().describe("Optional element selector."),
+      fullPage: z.boolean().optional().describe("Full page screenshot.")
     }
-  } catch (err: any) {
-    return { content: [{ type: "text", text: `Error: ${err.message}` }] };
+  },
+  async ({ selector, fullPage }) => {
+    const p = await ensurePage();
+    let buffer: Buffer;
+    if (selector) {
+      const el = await p.$(selector);
+      if (!el) throw new Error(`Element not found: ${selector}`);
+      buffer = await el.screenshot({ type: "png" });
+    } else {
+      buffer = await p.screenshot({ type: "png", fullPage: Boolean(fullPage) });
+    }
+    const b64 = buffer.toString("base64");
+    return { 
+      content: [{ 
+        type: "text", 
+        text: b64,
+        mimeType: "image/png;base64"
+      }] 
+    };
   }
-});
+);
 
 process.on("SIGINT", async () => {
   await browser?.close();
   process.exit(0);
 });
 
-server.connect();
+async function main() {
+  const transport = new StdioServerTransport();
+  await server.connect(transport);
+}
+
+main().catch((error) => {
+  console.error("Server error:", error);
+  process.exit(1);
+});
 
