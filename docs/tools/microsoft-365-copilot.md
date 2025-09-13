@@ -11,6 +11,8 @@ Microsoft 365 Education provides Teams, OneDrive, Class Notebook, and Entra ID-b
 - Entra ID SSO, conditional access, MFA for admins.
 - Intune policies for device compliance and content filtering.
 - Copilot respects M365 permissions; configure data access and logging.
+- PDPO alignment: set data residency (HK/SG as applicable), apply DLP and retention policies,
+  and document cross-border transfer controls per DPP1–DPP6.
 
 ## Setup & Integration
 - Identity: Entra ID groups for staff/students/classes.
@@ -65,3 +67,5 @@ flowchart LR
   CA --> LOG
   MFA --> CA
 ```
+
+Back to comparison: [AI Tool Comparison](../ai-tool-comparison.md)

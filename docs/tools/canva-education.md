@@ -11,6 +11,8 @@ Canva for Education is a free K–12 plan offering templates, whiteboards, and m
 - Teacher-managed classes; moderation and sharing controls.
 - Configure content filters and restrict external sharing.
 - Use SSO and ensure class membership is current.
+- PDPO alignment: minimize student PII; confirm data residency/retention with vendor and document
+  controls against DPP1–DPP6.
 
 ## Setup & Integration
 - SSO via Google/Microsoft; import classes from LMS where supported.
@@ -51,3 +53,5 @@ flowchart LR
   C --> SH
   C --> MOD
 ```
+
+Back to comparison: [AI Tool Comparison](../ai-tool-comparison.md)

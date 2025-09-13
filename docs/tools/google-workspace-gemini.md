@@ -1,7 +1,7 @@
 # Google Workspace for Education + Gemini
 
 ## Overview
-Google Workspace for Education provides a comprehensive suite of educational tools including Classroom, Docs, Drive, Meet, Gmail, and Admin controls. Gemini for Education adds AI-powered features for lesson planning, content creation, and personalized learning experiences, built specifically for the unique needs of the educational community.
+Google Workspace for Education provides a comprehensive suite of educational tools including Classroom, Docs, Drive, Meet, Gmail, and Admin controls. [Gemini for Education adds AI-powered features for lesson planning, content creation, and personalized learning experiences](https://blog.google/outreach-initiatives/education/gemini-iste-2025/), built specifically for the unique needs of the educational community.
 
 ## Edition Tiers & Features
 
@@ -26,10 +26,10 @@ Google Workspace for Education provides a comprehensive suite of educational too
 - **Analytics**: Detailed usage and engagement analytics
 - **Premium Support**: Priority support and training resources
 
-### Google AI Pro for Education (New for 2025)
-- **Launch Date**: Available from September 1, 2025
-- **Features**: All advanced AI features previously in Gemini Education Premium at reduced pricing
-- **Premium AI Models**: Access to Gemini 2.5 Pro with significantly higher usage limits
+### Google AI Pro for Education ⚠️ **PARTIALLY VERIFIED**
+- **Availability**: [Free access for college students launched in September 2025](https://blog.google/products/gemini/google-ai-pro-students-learning/) with expanded AI capabilities
+- **Features**: [Access to Gemini 2.5 Pro with higher usage limits](https://gemini.google/students/) for educational institutions
+- **Student Focus**: [One-year free upgrade available to college students in select countries](https://gemini.google/students/)
 
 ## Gemini for Education Capabilities
 
@@ -41,7 +41,7 @@ Google Workspace for Education provides a comprehensive suite of educational too
 - **Differentiated Materials**: Create personalized content for different student needs
 
 ### Classroom Integration Features (Free for All Educators)
-- **30+ New Features**: Available at no cost to all Google Workspace for Education users
+- **30+ New Features**: [Available at no cost to all Google Workspace for Education users](https://blog.google/outreach-initiatives/education/classroom-ai-features/)
 - **Brainstorming Support**: AI-assisted idea generation for teaching activities
 - **Content Personalization**: Adapt materials for different learning styles and abilities
 - **Rubric-Aligned Feedback**: Generate suggestions aligned with learning objectives
@@ -68,11 +68,13 @@ Google Workspace for Education provides a comprehensive suite of educational too
 
 ## Enhanced Security & Compliance Framework
 
-### Data Protection Measures
-- **No Advertising**: Zero ads in education core services, no personal data used for advertising
-- **Model Training Opt-out**: Student and teacher data not used to improve AI models
+### Data Protection Measures ✅ **VERIFIED**
+- **No Advertising**: [Zero ads in education core services, no personal data used for advertising](https://edu.google.com/why-google/privacy-security/)
+- **Model Training Opt-out**: [Student and teacher data not used to improve AI models](https://blog.google/outreach-initiatives/education/gemini-education-higher-ed/)
 - **Enterprise-Grade Protection**: Advanced data loss prevention and threat detection
 - **Regional Data Controls**: Available data residency options where applicable
+
+*Source: [Google for Education Privacy & Security](https://edu.google.com/why-google/privacy-security/)*
 
 ### PDPO Compliance Features
 - **Audit Logging**: Comprehensive access and event logging with configurable retention
@@ -249,6 +251,7 @@ flowchart TB
   S --> EDB
 ```
 
+Back to comparison: [AI Tool Comparison](../ai-tool-comparison.md)
 ### AI Workflow Integration
 ```mermaid
 sequenceDiagram

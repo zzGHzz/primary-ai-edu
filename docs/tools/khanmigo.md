@@ -11,6 +11,8 @@ Khanmigo is Khan Academy’s AI tutor/coach integrated with standards-aligned co
 - Student accounts under school/district tenancy; moderated interactions.
 - Classroom management features to review and flag content.
 - Data processing agreements available for schools; confirm region and retention.
+- PDPO alignment: verify data residency/transfer terms, retention, and access logs with vendor;
+  avoid storing unnecessary student PII (DPP1–DPP6).
 
 ## Setup & Integration
 - Rostering via SSO (Google/Microsoft) and standard roster tools; class imports.
@@ -43,3 +45,5 @@ flowchart LR
   D --> M
   M --> L
 ```
+
+Back to comparison: [AI Tool Comparison](../ai-tool-comparison.md)

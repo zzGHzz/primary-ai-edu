@@ -11,6 +11,8 @@ Quizizz is a quiz/lesson platform with live and homework modes. AI-assisted ques
 - Class codes and rostered classes; teacher control over what’s visible.
 - Content moderation and report/flag options.
 - Use SSO; avoid student PII in quiz titles/descriptions.
+- PDPO alignment: verify vendor data residency/retention; keep student identifiers out of content
+  and document controls aligned to DPP1–DPP6.
 
 ## Setup & Integration
 - SSO via Google/Microsoft; import from Google Classroom.
@@ -31,7 +33,7 @@ Quizizz is a quiz/lesson platform with live and homework modes. AI-assisted ques
 ## Diagrams
 ```mermaid
 flowchart LR
-  T[Teacher] -->|Creates Set (AI Assist)| Q[Question Bank]
+  T[Teacher] -->|AI Assist| Q[Question Bank]
   Q -->|Assigns| C[Class]
   S1[Student] --> C
   S2[Student] --> C
@@ -44,3 +46,5 @@ flowchart LR
   Q --> MOD
   C --> PRIV
 ```
+
+Back to comparison: [AI Tool Comparison](../ai-tool-comparison.md)

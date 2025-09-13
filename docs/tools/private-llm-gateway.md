@@ -62,3 +62,5 @@ flowchart LR
   POL --> VX
   POL --> OA
 ```
+
+Back to comparison: [AI Tool Comparison](../ai-tool-comparison.md)

@@ -11,6 +11,8 @@ Nearpod delivers interactive lessons, polls, quizzes, VR content, and student-pa
 - Teacher controls session access and pacing; join via codes.
 - Student responses visible to teacher; moderation options available.
 - Use SSO and limit external sharing of student work.
+- PDPO alignment: confirm vendor data residency and retention; minimize PII in activities and
+  document safeguards against DPP1–DPP6.
 
 ## Setup & Integration
 - SSO/LMS integrations available; import rosters where supported.
@@ -45,3 +47,5 @@ flowchart LR
   T --> ACC
   N --> MOD
 ```
+
+Back to comparison: [AI Tool Comparison](../ai-tool-comparison.md)
