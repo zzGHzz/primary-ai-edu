@@ -3,7 +3,6 @@
 **📍 Verification Status Key:**
 - ✅ **VERIFIED**: Confirmed by online sources with links
 - ⚠️ **PARTIALLY VERIFIED**: Some aspects confirmed, some require clarification
-- ❌ **UNVERIFIED**: No online sources found to confirm claims
 
 ---
 
