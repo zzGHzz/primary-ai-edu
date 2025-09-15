@@ -118,7 +118,7 @@ This comprehensive analysis evaluates AI platforms for Hong Kong primary educati
 
 #### Comprehensive Platform Comparison Matrix
 
-| Platform | PDPO Compliance | Bilingual Support | Age Appropriateness | Integration | Cost | Training Burden | Data Residency | Overall Score |
+| Platform | PDPO Compliance | Bilingual Support | Age Appropriateness | Integration | Cost | Training Burden | Data Residency | [Overall Score](evaluation-rubric.md) |
 |----------|-----------------|-------------------|-------------------|-------------|------|----------------|----------------|---------------|
 | **Google Workspace + Gemini** | Excellent | Excellent | Excellent | Excellent | Excellent | Low | Good | **9.3/10** |
 | Microsoft 365 + Copilot | Good | Good | Limited | Medium | Medium | Medium | Good | **6.1/10** |
